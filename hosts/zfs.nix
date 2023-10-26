@@ -24,11 +24,6 @@
       fsType = "vfat";
     };
 
-    "/" = {
-      device = "zroot/local/root";
-      fsType = "zfs";
-    };
-
     "/nix" = {
       device = "zroot/local/nix";
       fsType = "zfs";
@@ -39,14 +34,40 @@
       fsType = "zfs";
     };
 
-    "/home/${user}" = {
-      device = "zroot/safe/home";
-      fsType = "zfs";
-    };
-
     "/persist" = {
       device = "zroot/safe/persist";
       fsType = "zfs";
+    };
+
+    "/" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = ["defaults" "size=1G" "mode=755"];
+    };
+
+    "/home/${user}" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = ["defaults" "size=1G" "mode=777"];
+    };
+
+    "/var/log" = {
+      device = "/persist/var/log";
+      fsType = "none";
+      options = [ "bind" ];
+    };
+  };
+
+  services.sanoid = {
+    enable = true;
+
+    datasets = {
+      "zroot/safe/persist" = {
+        hourly = 50;
+        daily = 20;
+        weekly = 6;
+        monthly = 3;
+      };
     };
   };
 }

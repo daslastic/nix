@@ -9,21 +9,6 @@
   services.gvfs.enable = true;
   services.envfs.enable = true;
 
-  # root / home filesystem is destroyed and rebuilt on every boot:
-  # https://grahamc.com/blog/erase-your-darlings
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    ${"zfs rollback -r zroot/local/root@blank"}
-    ${"zfs rollback -r zroot/safe/home@blank"}
-  '';
-
-  # fix directory permissions so home-manager doesn't error out
-  systemd.services.fix-mount-permissions = {
-    script = ''
-      chown  ${user}:users /home/${user} && chmod 700 /home/${user}
-    '';
-    wantedBy = ["multi-user.target"];
-  };
-
   fileSystems."/persist".neededForBoot = true;
 
   # persisting user passwords
