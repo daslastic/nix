@@ -16,6 +16,11 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -32,12 +37,7 @@
       system = "x86_64-linux";
     };
   in {
-    nixosConfigurations = import ./hosts (commonInherits // {});
-    homeConfigurations = import ./hosts (commonInherits // {});
-
-    # packages = forAllSystems (
-    #   pkgs: (import ./packages {inherit pkgs;})
-    # );
+    nixosConfigurations = import ./hosts (commonInherits // {isNixOS = true;});
 
     inherit self;
   };

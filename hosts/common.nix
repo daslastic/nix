@@ -3,25 +3,40 @@
 {
   imports =
     [
-      ./zfs.nix
       ./impermanence.nix
+      ./zfs.nix
     ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 2d";
+    };
+    package = pkgs.nixVersions.unstable;
+  };
   nixpkgs.config.allowUnfree = true;
 
-  boot.loader = {
-    # systemd-boot.enable = true;
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+  boot = {
+    loader = {
+      # systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+      grub = {
+        enable = true;
+        devices = ["nodev"];
+        efiSupport = true;
+      }; 
     };
-    grub = {
-      enable = true;
-      devices = ["nodev"];
-      efiSupport = true;
-    }; 
+    kernel.sysctl."kernel.sysrq" = 1;
   };
+
 
   networking = {
     networkmanager = {
@@ -82,5 +97,10 @@
     openssh.enable = true;
   };
 
-  system.stateVersion = "23.11";
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
+
+  system.stateVersion = "23.05";
 }

@@ -25,15 +25,8 @@
     };
 
     "/" = {
-      device = "tmpfs";
-      fsType = "tmpfs";
-      options = ["defaults" "size=1G" "mode=755"];
-    };
-
-    "/home/${user}" = {
-      device = "tmpfs";
-      fsType = "tmpfs";
-      options = ["defaults" "size=1G" "mode=777"];
+      device = "zroot/local/root";
+      fsType = "zfs";
     };
 
     "/nix" = {
@@ -43,6 +36,11 @@
 
     "/tmp" = {
       device = "zroot/local/tmp";
+      fsType = "zfs";
+    };
+
+    "/home/${user}" = {
+      device = "zroot/safe/home";
       fsType = "zfs";
     };
 
