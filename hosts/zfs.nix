@@ -7,6 +7,7 @@
   boot.supportedFilesystems = ["zfs"];
   boot.zfs.devNodes = lib.mkDefault "/dev/disk/by-id";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  networking.hostId = "89eaa833"; 
 
   services.zfs = {
     autoScrub.enable = true;
@@ -18,7 +19,7 @@
   ];
 
   fileSystems = let
-      "/home/${user}";
+      homeMountPoint = "/home/${user}";
   in {
     "/boot" = {
       device = "/dev/disk/by-label/NIXBOOT";

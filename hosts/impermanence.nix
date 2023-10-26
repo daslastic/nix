@@ -1,6 +1,7 @@
 {
   config,
   user,
+  ...
 }: {
   environment.persistence."/persistent" = {
     hideMounts = true;
