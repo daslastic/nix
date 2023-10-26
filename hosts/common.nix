@@ -60,12 +60,13 @@
     };
     shellAliases = {
       v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
     };
     systemPackages = with pkgs; [
       curl
       eza
       killall
-      neovim
       ripgrep
       tree
       wget
@@ -74,6 +75,7 @@
       rar
       ripgrep
       wget
+      htop
       home-manager
     ];
   };
@@ -84,12 +86,6 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-    };
-    neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-      defaultEditor = true;
     };
   };
 

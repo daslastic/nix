@@ -18,7 +18,9 @@
           ./common.nix
           ./${host}
           ./${host}/hardware.nix
+          ../programs
           inputs.home-manager.nixosModules.home-manager
+          inputs.nixvim.nixosModules.nixvim
           {
             home-manager = {
               useGlobalPkgs = true;
