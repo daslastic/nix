@@ -50,12 +50,6 @@
       fsType = "tmpfs";
       options = ["defaults" "size=1G" "mode=777"];
     };
-
-    "/var/log" = {
-      device = "/persist/var/log";
-      fsType = "none";
-      options = [ "bind" ];
-    };
   };
 
   services.sanoid = {

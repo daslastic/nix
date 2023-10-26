@@ -95,6 +95,7 @@
 
   services = {
     openssh.enable = true;
+    polkit.enable = true;
   };
 
   hardware.opengl = {

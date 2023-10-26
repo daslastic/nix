@@ -22,7 +22,7 @@
   # setup persistence for home manager
   programs.fuse.userAllowOther = true;
 
-  environment.persistence."/persistent" = {
+  environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
       "/var/log"
