@@ -7,6 +7,12 @@
   fonts.fontconfig.enable = true;
   systemd.user.startServices = true;
 
+  programs.git = {
+    enable = true;
+    userName  = "daslastic";
+    userEmail = "daslastic@gmail.com";
+  };
+
   home = {
     username = user;
     homeDirectory = "/home/${user}";
@@ -23,6 +29,7 @@
       directories = [
         ".gnupg"
         ".ssh"
+        ".config/nix"
       ];
       allowOther = true;
     };

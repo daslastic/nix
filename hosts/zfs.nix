@@ -37,6 +37,7 @@
     "/persist" = {
       device = "zroot/safe/persist";
       fsType = "zfs";
+      neededForBoot = true;
     };
 
     "/" = {

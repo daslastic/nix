@@ -93,9 +93,9 @@
     };
   };
 
+  security.polkit.enable = true;
   services = {
     openssh.enable = true;
-    polkit.enable = true;
   };
 
   hardware.opengl = {
