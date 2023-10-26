@@ -11,5 +11,7 @@
       ];
       allowOther = true;
     };
+    packages = with pkgs; [
+    ];
   };
 }

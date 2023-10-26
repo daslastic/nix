@@ -18,17 +18,22 @@
     {device = "/dev/disk/by-label/SWAP";}
   ];
 
-  fileSystems = let
-      homeMountPoint = "/home/${user}";
-  in {
+  fileSystems = {
     "/boot" = {
       device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
     };
 
     "/" = {
-      device = "zroot/local/root";
-      fsType = "zfs";
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = ["defaults" "size=1G" "mode=755"];
+    };
+
+    "/home/${user}" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = ["defaults" "size=1G" "mode=777"];
     };
 
     "/nix" = {
@@ -38,11 +43,6 @@
 
     "/tmp" = {
       device = "zroot/local/tmp";
-      fsType = "zfs";
-    };
-
-    "${homeMountPoint}" = {
-      device = "zroot/safe/home";
       fsType = "zfs";
     };
 

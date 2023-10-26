@@ -5,6 +5,7 @@
   ...
 }: {
   fonts.fontconfig.enable = true;
+  systemd.user.startServices = true;
 
   home = {
     username = user;
@@ -16,14 +17,6 @@
 
     packages = with pkgs;
       [
-        curl
-        gzip
-        killall
-        neovim
-        rar
-        ripgrep
-        wget
-        home-manager
       ];
 
     persistence."/persist/home/${user}" = {

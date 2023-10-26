@@ -24,8 +24,10 @@
   };
 
   networking = {
-    hostName = "${user}-${host}";
-    networkmanager.enable = true;
+    networkmanager = {
+      wifi.powersave = false;
+      enable = true;
+    };
     firewall.enable = false;
   };
 
@@ -41,6 +43,9 @@
       VISUAL = "nvim";
       NIXPKGS_ALLOW_UNFREE = "1";
     };
+    shellAliases = {
+      v = "nvim";
+    };
     systemPackages = with pkgs; [
       curl
       eza
@@ -49,14 +54,28 @@
       ripgrep
       tree
       wget
+      gzip
+      killall
+      rar
+      ripgrep
+      wget
+      home-manager
     ];
   };
 
   time.timeZone = "Eastern/Canada";
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      defaultEditor = true;
+    };
   };
 
   services = {
