@@ -9,8 +9,10 @@
     ];
 
   boot = {
-    initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-    initrd.kernelModules = [ ];
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+      kernelModules = [ "i915" ];
+    };
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
   };
@@ -21,17 +23,29 @@
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  powerManagement = {
+    enable = false;
+  };
+
   hardware = {
+    acpilight.enable = true;
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     opengl = {
       enable = true;
       extraPackages = with pkgs; [
-        intel-media-driver
-        vaapiIntel
+        intel-media-driver # LIBVA_DRIVER_NAME=iHD
+        vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
         vaapiVdpau
         libvdpau-va-gl
+        intel-ocl
         intel-compute-runtime
       ];
     };
+  };
+
+  environment.variables = {
+    VDPAU_DRIVER = "va_gl";
+    LIBVA_DRIVER_NAME = "iHD";
   };
 }

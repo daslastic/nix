@@ -37,7 +37,6 @@
     kernel.sysctl."kernel.sysrq" = 1;
   };
 
-
   networking = {
     networkmanager = {
       wifi.powersave = false;
@@ -62,6 +61,8 @@
       v = "nvim";
       vi = "nvim";
       vim = "nvim";
+      upgrade = "sudo nixos-rebuild switch --flake ~/.config/nix#${host}";
+      update = "sudo nix flake update ~/.config/nix";
     };
     systemPackages = with pkgs; [
       curl
@@ -76,6 +77,7 @@
       ripgrep
       wget
       htop
+      lsd
       home-manager
     ];
   };
