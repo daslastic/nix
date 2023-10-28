@@ -3,6 +3,6 @@
 {
   imports =
     [
-      ./nixvim.nix
+      ./nixvim
     ];
 }

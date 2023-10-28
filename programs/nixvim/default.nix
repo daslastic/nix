@@ -67,7 +67,6 @@
       plugins = {
         lualine.enable = true;
       };
-
     };
   };
 }

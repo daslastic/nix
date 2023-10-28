@@ -20,8 +20,6 @@
     wantedBy = ["multi-user.target"];
   };
 
-  # persisting user passwords
-  # https://reddit.com/r/NixOS/comments/o1er2p/tmpfs_as_root_but_without_hardcoding_your/h22f1b9/
   users = {
     mutableUsers = false;
     # create a password with for root and $user with:

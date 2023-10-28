@@ -7,14 +7,14 @@
     hostName = "notflix";
   };
 
-  users.users.${user}.shell = pkgs.fish;
+  users.users.${user} = {
+    shell = pkgs.fish;
+    # I want to try dis
+    ignoreShellProgramCheck = true;
+  };
 
   services.jellyfin = {
     openFirewall = true;
-    enable = true;
-  };
-
-  programs.fish = {
     enable = true;
   };
 

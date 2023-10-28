@@ -30,6 +30,7 @@
 
               users.${user} = {
                 imports = [
+                  inputs.nix-index-database.hmModules.nix-index
                   inputs.impermanence.nixosModules.home-manager.impermanence
                   ./${host}/home.nix
                   ./home-manager.nix
