@@ -7,7 +7,6 @@
   boot.supportedFilesystems = ["zfs"];
   boot.zfs.devNodes = lib.mkDefault "/dev/disk/by-id";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  networking.hostId = "89eaa833"; 
 
   services.zfs = {
     autoScrub.enable = true;
@@ -50,19 +49,6 @@
       device = "tmpfs";
       fsType = "tmpfs";
       options = ["defaults" "size=1G" "mode=777"];
-    };
-  };
-
-  services.sanoid = {
-    enable = true;
-
-    datasets = {
-      "zroot/safe/persist" = {
-        hourly = 50;
-        daily = 20;
-        weekly = 6;
-        monthly = 3;
-      };
     };
   };
 }

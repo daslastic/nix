@@ -23,6 +23,7 @@
   };
 
   networking = {
+    hostId = "574f5b48";
     networkmanager = {
       wifi.powersave = false;
       enable = true;

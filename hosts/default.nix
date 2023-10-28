@@ -3,11 +3,12 @@
   lib,
   self,
   user,
+  nixpkgs,
   ...
 }: let
   mkHost = host: let
     extraSpecialArgs = {
-      inherit self inputs host user;
+      inherit self inputs host user nixpkgs;
     };
   in
     lib.nixosSystem {
@@ -21,8 +22,10 @@
           ./nix.nix
           ./${host}
           ./${host}/hardware.nix
+
           inputs.home-manager.nixosModules.home-manager
           inputs.nixvim.nixosModules.nixvim
+
           {
             home-manager = {
               useGlobalPkgs = true;

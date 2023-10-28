@@ -1,8 +1,12 @@
 {
   pkgs,
+  nixpkgs,
   ...
 }: {
+
   nix = {
+    nixPath = ["nixpkgs=flake:nixpkgs"];
+    registry.nixpkgs.flake = nixpkgs;
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
@@ -14,5 +18,6 @@
     };
     package = pkgs.nixVersions.unstable;
   };
+
   nixpkgs.config.allowUnfree = true;
 }

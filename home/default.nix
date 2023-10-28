@@ -3,17 +3,19 @@
   pkgs,
   config,
   host,
+  nixpkgs,
   ...
 }: {
   imports =
     [
       ./fish
       ./tmux
-      ./lsd.nix
+      ./lsd
     ];
 
   fonts.fontconfig.enable = true;
   systemd.user.startServices = true;
+  nix.registry.nixpkgs.flake = nixpkgs;
 
   programs = {
     git = {
@@ -51,7 +53,7 @@
       vim = "nvim";
       upgrade = "sudo nixos-rebuild switch --flake ~/.config/nix#${host}";
       update = "sudo nix flake update ~/.config/nix";
-      cleanup = "nix-store --gc";
+      cleanup = "sudo nix-collect-garbage -d";
     };
 
     packages = with pkgs;
