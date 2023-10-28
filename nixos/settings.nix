@@ -13,7 +13,7 @@
         efiSupport = true;
       }; 
     };
-    kernel.sysctl."kernel.sysrq" = 1;
+    tmp.cleanOnBoot = true;
   };
 
   users.users.${user} = {...}: {
@@ -40,18 +40,4 @@
     enable = true;
     driSupport = true;
   };
-
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 2d";
-    };
-    package = pkgs.nixVersions.unstable;
-  };
-  nixpkgs.config.allowUnfree = true;
 }

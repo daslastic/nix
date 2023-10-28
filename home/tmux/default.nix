@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  user,
   ...
 }: {
   programs.tmux = {
@@ -12,5 +13,16 @@
     prefix = "C-a";
     baseIndex = 1;
     customPaneNavigationAndResize = true;
+    extraConfig = builtins.readFile ./tmux.conf;
+    plugins = with pkgs; [ 
+    ];
+  };
+
+  home = {
+      persistence."/persist/home/${user}" = {
+      directories = [
+        ".config/tmux"
+      ];
+    };
   };
 }

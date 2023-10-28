@@ -5,13 +5,10 @@
   user,
   ...
 }: {
-  boot.tmp.cleanOnBoot = true;
   services = {
     gvfs.enable = true;
     envfs.enable = true;
   };
-
-  fileSystems."/persist".neededForBoot = true;
 
   systemd.services.fix-mount-permissions = {
     script = ''

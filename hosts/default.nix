@@ -15,10 +15,12 @@
 
       modules =
         [
-          ./common.nix
+          ../nixos
+          ../vim
+          ./global.nix
+          ./nix.nix
           ./${host}
           ./${host}/hardware.nix
-          ../nixvim
           inputs.home-manager.nixosModules.home-manager
           inputs.nixvim.nixosModules.nixvim
           {
@@ -32,7 +34,7 @@
                 imports = [
                   inputs.impermanence.nixosModules.home-manager.impermanence
                   ./${host}/home.nix
-                  ../home-manager
+                  ../home
                 ];
 
                 programs.home-manager.enable = true;

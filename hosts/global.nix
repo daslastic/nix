@@ -1,13 +1,8 @@
-{ config, user, host, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./impermanence.nix
-      ./settings.nix
-      ./zfs.nix
-    ];
-
+  pkgs,
+  ...
+}: 
+{
   environment = {
     variables = {
       NIXPKGS_ALLOW_UNFREE = "1";
@@ -26,13 +21,6 @@
       wget
       home-manager
     ];
-  };
-
-  programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
   };
 
   system.stateVersion = "23.05";
