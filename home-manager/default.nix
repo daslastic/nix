@@ -5,6 +5,13 @@
   host,
   ...
 }: {
+  imports =
+    [
+      ./fish
+      ./tmux
+      ./lsd.nix
+    ];
+
   fonts.fontconfig.enable = true;
   systemd.user.startServices = true;
 
@@ -14,33 +21,16 @@
       userName  = "daslastic";
       userEmail = "daslastic@gmail.com";
     };
-    fish = {
-      enable = true;
-    };
+    command-not-found.enable = false;
     nix-index = {
       enable = true;
       enableFishIntegration = true;
     };
-    command-not-found.enable = false;
-    lsd = {
-      enable = true;
-      enableAliases = false;
-      settings = {
-        classic = false;
-        blocks = [ "permission" "user" "date" "name" ];
-        date = "+%b %d";
-        dereference = false;
-        display = "almost-all";
-        ignore-globs = [ "**/.DS_Store" "**/.Trash" "**/.cups" "**./wget-hsts" "**/.localized" "." ".." ];
-        indicators = false;
-        layout = "grid";
-        size = "short";
-        permission = "rwx";
-      };
-    };
   };
 
   home = {
+    file.".hushlogin".text = "";
+
     username = user;
     homeDirectory = "/home/${user}";
     stateVersion = "23.05";
@@ -61,6 +51,7 @@
       vim = "nvim";
       upgrade = "sudo nixos-rebuild switch --flake ~/.config/nix#${host}";
       update = "sudo nix flake update ~/.config/nix";
+      cleanup = "nix-store --gc";
     };
 
     packages = with pkgs;

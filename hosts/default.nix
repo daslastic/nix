@@ -18,7 +18,7 @@
           ./common.nix
           ./${host}
           ./${host}/hardware.nix
-          ../programs
+          ../nixvim
           inputs.home-manager.nixosModules.home-manager
           inputs.nixvim.nixosModules.nixvim
           {
@@ -30,10 +30,9 @@
 
               users.${user} = {
                 imports = [
-                  inputs.nix-index-database.hmModules.nix-index
                   inputs.impermanence.nixosModules.home-manager.impermanence
                   ./${host}/home.nix
-                  ./home-manager.nix
+                  ../home-manager
                 ];
 
                 programs.home-manager.enable = true;

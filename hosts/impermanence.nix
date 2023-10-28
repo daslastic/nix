@@ -32,7 +32,6 @@
 
   # setup persistence for home manager
   programs.fuse.userAllowOther = true;
-
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [

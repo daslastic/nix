@@ -9,7 +9,6 @@
 
   users.users.${user} = {
     shell = pkgs.fish;
-    # I want to try dis
     ignoreShellProgramCheck = true;
   };
 
