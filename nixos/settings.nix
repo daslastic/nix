@@ -28,13 +28,18 @@
       wifi.powersave = false;
       enable = true;
     };
-    firewall.enable = false;
   };
 
   time.timeZone = "Eastern/Canada";
   security.polkit.enable = true;
   services = {
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      openFirewall = true;
+    };
+    rsyncd = {
+      enable = true;
+    };
   };
 
   hardware.opengl = {

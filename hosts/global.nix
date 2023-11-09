@@ -20,6 +20,7 @@
       rar
       ripgrep
       wget
+      dysk
       home-manager
     ];
   };
