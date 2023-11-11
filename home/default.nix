@@ -11,6 +11,8 @@
       ./fish
       ./tmux
       ./lsd
+      ./fzf
+      ./fd
     ];
 
   fonts.fontconfig.enable = true;
@@ -62,12 +64,12 @@
         dysk
         fd
         fx
-        fzf
         htop
         sd
         vimv
         ugrep
         neofetch
+        hyperfine
       ];
 
     persistence."/persist/home/${user}" = {

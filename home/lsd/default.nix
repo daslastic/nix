@@ -10,7 +10,7 @@
     settings = {
       classic = false;
       sorting = {
-        column = "none";
+        column = "name";
         reverse = false;
         dir-grouping = "first";
       };
