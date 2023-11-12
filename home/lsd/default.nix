@@ -14,11 +14,11 @@
         reverse = false;
         dir-grouping = "first";
       };
-      blocks = [ "permission" "user" "group"  "date" "name" ];
+      blocks = [ "permission" "user" "group" "date" "name" ];
       date = "+%b %d";
       dereference = false;
       display = "almost-all";
-      ignore-globs = [ "**/.DS_Store" "**/.Trash" "**/.cups" "**./wget-hsts" "**/.localized" ".." "." ];
+      ignore-globs = [ "**/.DS_Store" "**/.Trash" "**/.cups" "**./wget-hsts" "**/.localized" ];
       indicators = false;
       layout = "grid";
       size = "short";

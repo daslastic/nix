@@ -13,7 +13,7 @@
     };
 
     shellAliases = {
-      l = "lsd -la";
+      l = "lsd -lA";
       ls = "lsd";
       v = "nvim";
       vi = "nvim";
@@ -28,6 +28,9 @@
     packages = with pkgs;
       [
         sl
+        cmatrix
+        asciiquarium
+        lolcat
       ];
   };
 }

@@ -15,6 +15,14 @@
         key = "<leader>x";
         action = "<cmd>qa!<cr>";
       }
+      {
+        mode = "n";
+        key = "<leader>r";
+        action = "<cmd>!chmod +x %<cr>";
+        options = {
+          silent = true;
+        };
+      }
 
       # split
       {

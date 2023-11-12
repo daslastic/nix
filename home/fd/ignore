@@ -1,14 +1,5 @@
 .m2
 .cache
-Movies
-Music
-Public
-Pictures
-Desktop
-Library
-Downloads
-Applications
-Documents
 .git
 .github
 .oracle_jre_usage

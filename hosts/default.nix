@@ -1,8 +1,8 @@
 {
   inputs,
-  lib,
   self,
   user,
+  lib,
   nixpkgs,
   ...
 }: let
@@ -10,45 +10,38 @@
     extraSpecialArgs = {
       inherit self inputs host user nixpkgs;
     };
-  in
-    lib.nixosSystem {
-      specialArgs = extraSpecialArgs;
+  in lib.nixosSystem {
+    specialArgs = extraSpecialArgs;
+    modules =
+      [
+        inputs.home-manager.nixosModules.home-manager
+        inputs.impermanence.nixosModules.impermanence
+        inputs.nixvim.nixosModules.nixvim
+        ../nixos
+        ./global.nix
+        ./nix.nix
+        ./${host}
+        ./${host}/hardware.nix
+        {
+          home-manager = {
+            inherit extraSpecialArgs;
 
-      modules =
-        [
-          ../nixos
-          ../vim
-          ./global.nix
-          ./nix.nix
-          ./${host}
-          ./${host}/hardware.nix
+            useGlobalPkgs = true;
+            useUserPackages = true;
 
-          inputs.home-manager.nixosModules.home-manager
-          inputs.nixvim.nixosModules.nixvim
+            users.${user} = {
+              imports = [
+                inputs.impermanence.nixosModules.home-manager.impermanence
+                ./${host}/home.nix
+                ../home
+              ];
 
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-
-              inherit extraSpecialArgs;
-
-              users.${user} = {
-                imports = [
-                  inputs.impermanence.nixosModules.home-manager.impermanence
-                  ./${host}/home.nix
-                  ../home
-                ];
-
-                programs.home-manager.enable = true;
-              };
+              programs.home-manager.enable = true;
             };
-          }
-
-          (lib.mkAliasOptionModule ["hm"] ["home-manager" "users" user])
-          inputs.impermanence.nixosModules.impermanence
-        ];
-    };
+          };
+        }
+      ];
+  };
 in {
-  server = mkHost "server";
+  notflix = mkHost "notflix";
 }

@@ -28,14 +28,12 @@
     };
     command-not-found.enable = false;
     nix-index = {
-      enable = true;
+      enable = false;
       enableFishIntegration = true;
     };
   };
 
   home = {
-    file.".hushlogin".text = "";
-
     username = user;
     homeDirectory = "/home/${user}";
     stateVersion = "23.05";
@@ -43,6 +41,7 @@
       NIXPKGS_ALLOW_UNFREE = "1";
     };
 
+    file.".hushlogin".text = "";
     persistence."/persist/home/${user}" = {
       directories = [
         ".gnupg"

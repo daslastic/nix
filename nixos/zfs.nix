@@ -4,9 +4,11 @@
   user,
   ...
 }: {
-  boot.supportedFilesystems = ["zfs"];
-  boot.zfs.devNodes = lib.mkDefault "/dev/disk/by-id";
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot = {
+    zfs.devNodes = lib.mkDefault "/dev/disk/by-id";
+    supportedFilesystems = ["zfs"];
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  };
 
   services.zfs = {
     autoScrub.enable = true;
@@ -14,7 +16,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-label/SWAP";}
+    { device = "/dev/disk/by-label/SWAP"; }
   ];
 
   fileSystems = {
