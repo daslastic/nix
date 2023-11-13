@@ -15,10 +15,6 @@
       scp = "scp -r";
     };
 
-    shellAliases = {
-      colorscript = "sh $(find $HOME/.config/fish/colorscripts -type f | shuf -n1)";
-    };
-
     plugins = [
       {
         name = "sponge";
@@ -35,12 +31,11 @@
     ];
   };
 
-  home = {
-    file = {
-      ".config/fish/themes/fishsticks.theme".source = ./fishsticks.theme;
-      ".config/fish/colorscripts".source = ./colorscripts;
-    };
+  xdg.configFile = {
+    "fish/themes/fishsticks.theme".source = ./fishsticks.theme;
+  };
 
+  home = {
     persistence."/persist/home/${user}" = {
       directories = [
         ".config/fish"

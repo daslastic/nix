@@ -11,6 +11,7 @@ bind -M default \cf $fzf_cmd
 bind -M insert \cs $fish_clear
 bind -M visual \cs $fish_clear
 bind -M default \cs $fish_clear
+
 set -x FZF_DEFAULT_OPTS '--layout=reverse' '--preview-window=hidden' '--height=100%'
 set -x fzf_directory_opts '--bind=ctrl-o:become($EDITOR {} &> /dev/tty)' '--layout=reverse-list' '--preview-window=hidden'
 set -x fzf_fd_opts --hidden --type d . $HOME
@@ -18,17 +19,14 @@ set -x fzf_fd_opts --hidden --type d . $HOME
 # prompt
 set fish_greeting
 set -x fish_color_prefix "green"
-set -x fish_color_idk "white"
-set -x fish_color_suffix "yellow"
-set -x fish_color_pwd "green"
 set -x fish_prompt_pwd_dir_length 50
 
 function fish_prompt -d "Write out the prompt"
   printf '%s%s%s %s%s%s\n%s ' \
     (set_color $fish_color_prefix)(whoami)\
-    (set_color $fish_color_idk)@\
-    (set_color $fish_color_suffix)(hostname)\
-    (set_color $fish_color_pwd) (prompt_pwd) \
+    (set_color "white")@\
+    (set_color "yellow")(hostname)\
+    (set_color "green") (prompt_pwd) \
     (set_color "red"; fish_git_prompt) \
     (set_color normal)🍺
 end

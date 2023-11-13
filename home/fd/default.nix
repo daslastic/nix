@@ -5,7 +5,7 @@
   user,
   ...
 }: {
-  home = {
-    file.".config/fd/ignore".source = ./ignore;
+  xdg.configFile = {
+    "fd/ignore".source = ./ignore;
   };
 }

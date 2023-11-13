@@ -19,5 +19,10 @@
     package = pkgs.nixVersions.unstable;
   };
 
+  programs = {
+    command-not-found.enable = false;
+    nix-index.enable = false;
+  };
+
   nixpkgs.config.allowUnfree = true;
 }

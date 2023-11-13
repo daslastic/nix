@@ -23,17 +23,12 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "daslastic@gmail.com";
-   # certs."daslastic.xyz" = {
-   #   dnsProvider = "cloudflare";
-   #   credentialsFile = /persist/etc/shadow/auth;
-   #   group = "nginx";
-   #   extraDomainNames = [
-   #     "*.daslastic.xyz"
-   #   ];
-   # };
   };
-  
+
+  qt.enable = false;
+
   services = {
+    xserver.enable = false;
     nextcloud = {
       enable = true;
       package = pkgs.nextcloud27;

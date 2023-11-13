@@ -30,4 +30,11 @@
       header = false;
     };
   };
+
+  home = {
+    shellAliases = {
+      l = "lsd -lA";
+      ls = "lsd";
+    };
+  };
 }

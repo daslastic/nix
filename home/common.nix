@@ -13,12 +13,10 @@
     };
 
     shellAliases = {
-      l = "lsd -lA";
-      ls = "lsd";
+      dc = "sl";
       v = "nvim";
       vi = "nvim";
       vim = "nvim";
-      dc = "sl";
       upgrade = "sudo nixos-rebuild switch --flake ~/.config/nix#${host}";
       update = "sudo nix flake update ~/.config/nix";
       cleanup = "sudo nix-collect-garbage -d";
@@ -27,6 +25,8 @@
 
     packages = with pkgs;
       [
+        xdg-user-dirs
+
         sl
         cmatrix
         asciiquarium

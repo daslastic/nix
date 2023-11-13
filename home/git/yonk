@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git clone --recurse-submodules "git@github.com:$1.git"

@@ -8,7 +8,9 @@
 }: {
   imports =
     [
+      ./xdg
       ./fish
+      ./git
       ./tmux
       ./lsd
       ./fzf
@@ -21,15 +23,10 @@
   nix.registry.nixpkgs.flake = nixpkgs;
 
   programs = {
-    git = {
-      enable = true;
-      userName  = "daslastic";
-      userEmail = "daslastic@gmail.com";
-    };
     command-not-found.enable = false;
     nix-index = {
       enable = false;
-      enableFishIntegration = true;
+      enableFishIntegration = false;
     };
   };
 

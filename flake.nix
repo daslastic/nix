@@ -11,32 +11,25 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-index-database = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
- outputs = inputs @ {
-   nixpkgs,
-   self,
-   ...
- }: let
-   forAllSystems = function:
-     nixpkgs.lib.genAttrs ["x86_64-linux"] (system: function nixpkgs.legacyPackages.${system});
-   commonInherits = {
-     inherit (nixpkgs) lib;
-     inherit self inputs nixpkgs;
-     user = "daslastic";
-     system = "x86_64-linux";
-   };
- in {
-   nixosConfigurations = import ./hosts (commonInherits // {isNixOS = true;});
-   inherit self;
- };
+  outputs = inputs @ {
+    nixpkgs,
+    self,
+    ...
+  }: let
+  forAllSystems = function: nixpkgs.lib.genAttrs ["x86_64-linux"] (system: function nixpkgs.legacyPackages.${system});
+    commonInherits = {
+    inherit (nixpkgs) lib;
+    inherit self inputs nixpkgs;
+    user = "daslastic";
+    system = "x86_64-linux";
+  }; in {
+    nixosConfigurations = import ./hosts (commonInherits // {isNixOS = true;});
+    inherit self;
+  };
 }

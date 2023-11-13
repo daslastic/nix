@@ -18,6 +18,7 @@
         inputs.impermanence.nixosModules.impermanence
         inputs.nixvim.nixosModules.nixvim
         ../nixos
+        ../vim
         ./global.nix
         ./nix.nix
         ./${host}
