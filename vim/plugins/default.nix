@@ -3,9 +3,10 @@
 {
   imports =
     [
+      ./lsp
+      ./tmux
+      ./telescope
       ./lualine.nix
-      ./tmux.nix
       ./undotree.nix
-      ./telescope.nix
     ];
 }

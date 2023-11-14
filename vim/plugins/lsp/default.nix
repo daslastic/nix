@@ -1,0 +1,4 @@
+{ config, user, host, pkgs, ... }:
+
+{
+}
