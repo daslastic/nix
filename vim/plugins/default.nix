@@ -4,9 +4,11 @@
   imports =
     [
       ./lsp
+      ./inlayhints
       ./tmux
       ./telescope
       ./lualine.nix
       ./undotree.nix
+      ./zen
     ];
 }

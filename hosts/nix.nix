@@ -3,7 +3,6 @@
   nixpkgs,
   ...
 }: {
-
   nix = {
     nixPath = ["nixpkgs=flake:nixpkgs"];
     registry.nixpkgs.flake = nixpkgs;
