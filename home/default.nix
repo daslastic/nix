@@ -9,6 +9,7 @@
   imports =
     [
       ./xdg
+      ./bin
       ./fish
       ./git
       ./tmux
