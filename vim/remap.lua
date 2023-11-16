@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>x", "<cmd>qa!<cr>")
-vim.keymap.set("n", "<leader>r", "<cmd>!chmod +x %<cr>", { silent = true })
+vim.keymap.set("n", "<leader>R", "<cmd>!chmod +x %<cr>", { silent = true })
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 

@@ -26,6 +26,7 @@
     packages = with pkgs;
       [
         xdg-user-dirs
+        tmux-sessionizer
 
         sl
         cmatrix

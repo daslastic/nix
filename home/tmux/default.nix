@@ -15,8 +15,11 @@
     disableConfirmationPrompt = true;
     customPaneNavigationAndResize = true;
     extraConfig = builtins.readFile ./tmux.conf;
-    plugins = with pkgs; [ 
-      tmuxPlugins.yank
+    plugins = with pkgs.tmuxPlugins; [ 
+      yank
+      resurrect
+      continuum
+      yank
     ];
   };
 

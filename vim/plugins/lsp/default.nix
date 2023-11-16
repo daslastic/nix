@@ -3,15 +3,6 @@
 {
   programs.nixvim  = {
     plugins = { 
-      treesitter = {
-        enable = true;
-        nixGrammars = true;
-        ensureInstalled = "all";
-      };
-
-      nvim-autopairs.enable = true;
-      ts-autotag.enable = true;
-
       lsp = {
         enable = true;
         servers = {
