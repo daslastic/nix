@@ -13,22 +13,27 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     };
+
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
   };
 
   outputs = inputs @ {
     nixpkgs,
     self,
+    nixpkgs-stable,
     ...
-  }: let
-  forAllSystems = function: nixpkgs.lib.genAttrs ["x86_64-linux"] (system: function nixpkgs.legacyPackages.${system});
-    commonInherits = {
-    inherit (nixpkgs) lib;
-    inherit self inputs nixpkgs;
-    user = "daslastic";
+  }:
+  let
     system = "x86_64-linux";
-  }; in {
+    forAllSystems = function: nixpkgs.lib.genAttrs ["x86_64-linux"] (system: function nixpkgs.legacyPackages.${system});
+      commonInherits = {
+      inherit (nixpkgs) lib;
+      inherit self inputs nixpkgs nixpkgs-stable system;
+      user = "daslastic";
+    };
+  in {
     nixosConfigurations = import ./hosts (commonInherits // {isNixOS = true;});
     inherit self;
   };

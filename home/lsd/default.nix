@@ -18,7 +18,26 @@
       date = "+%b %d";
       dereference = false;
       display = "almost-all";
-      ignore-globs = [ "**/.DS_Store" "**/.Trash" "**/.cups" "**./wget-hsts" "**/.localized" ];
+      ignore-globs = [ 
+        # mac bs
+        "**/.DS_Store"
+        ".Trash"
+        ".cups"
+        ".localized"
+
+        # linux bs
+        ".wget-hsts"
+        ".nix-defexpr"
+        ".pki"
+        ".mozilla"
+        ".hushlogin"
+        ".manpath"
+        ".nix-profile"
+        ".steam"
+        ".steampid"
+        ".steampath"
+        ".gtkrc-2.0"
+      ];
       indicators = false;
       layout = "grid";
       size = "short";
@@ -34,7 +53,6 @@
   home = {
     shellAliases = {
       l = "lsd -lA";
-      ls = "lsd";
     };
   };
 }

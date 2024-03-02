@@ -6,6 +6,7 @@
       ./impermanence.nix
       ./settings.nix
       ./zfs.nix
+      ./river.nix
     ];
 
   programs = {

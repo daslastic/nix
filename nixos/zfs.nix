@@ -35,6 +35,11 @@
       fsType = "zfs";
     };
 
+    "/media/movies" = {
+      device = "poopy/movies";
+      fsType = "zfs";
+    };
+
     "/persist" = {
       device = "zroot/safe/persist";
       fsType = "zfs";
@@ -50,7 +55,7 @@
     "/home/${user}" = {
       device = "tmpfs";
       fsType = "tmpfs";
-      options = ["defaults" "size=1G" "mode=777"];
+      options = ["defaults" "size=4G" "mode=777"];
     };
   };
 }

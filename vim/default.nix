@@ -12,13 +12,6 @@
 
     colorschemes.gruvbox = {
       enable = true;
-      trueColor = true;
-      contrastDark = "hard";
-      bold = true;
-      italics = true;
-      transparentBg = true;
-      improvedWarnings = true;
-      improvedStrings = true;
     }; # working???
 
     extraConfigLua = ''

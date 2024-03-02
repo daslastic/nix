@@ -7,17 +7,17 @@
         enable = true;
         servers = {
           clangd.enable = true;
-          rnix-lsp.enable = true;
+          # rnix-lsp.enable = true;
           pyright.enable = true;
           rust-analyzer.enable = true;
           html.enable = true;
           cssls.enable = true;
           jsonls.enable = true;
-          eslint.enable = true;
-          tsserver.enable = true;
-          vuels.enable = true;
+          # eslint.enable = true;
+          # tsserver.enable = true;
+          # vuels.enable = true;
           svelte.enable = true;
-          elixirls.enable = true;
+          # elixirls.enable = true;
         };
       };
 

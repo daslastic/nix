@@ -8,7 +8,7 @@
     hostName = "notflix";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 ];
+      allowedTCPPorts = [ 80 443 25565 8099 8096 ];
     };
   };
 
@@ -20,36 +20,14 @@
     nginx.extraGroups = [ "acme" ];
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   security.acme = {
     acceptTerms = true;
     defaults.email = "daslastic@gmail.com";
   };
 
-  qt.enable = false;
-
   services = {
-    xserver.enable = false;
-    nextcloud = {
-      enable = true;
-      package = pkgs.nextcloud27;
-      hostName = "cloud.daslastic.xyz";
-      https = true;
-      configureRedis = true;
-      config.adminpassFile = "/persist/etc/shadow/nextcloud";
-      extraOptions.enabledPreviewProviders = [
-        "OC\\Preview\\BMP"
-        "OC\\Preview\\GIF"
-        "OC\\Preview\\JPEG"
-        "OC\\Preview\\Krita"
-        "OC\\Preview\\MarkDown"
-        "OC\\Preview\\MP3"
-        "OC\\Preview\\OpenDocument"
-        "OC\\Preview\\PNG"
-        "OC\\Preview\\TXT"
-        "OC\\Preview\\XBitmap"
-        "OC\\Preview\\HEIC"
-      ];
-    };
     vaultwarden = {
       enable = true;
       config = {
@@ -68,11 +46,6 @@
       recommendedGzipSettings = true;
 
       virtualHosts = {
-        "daslastic.xyz" = {
-          onlySSL = true;
-          enableACME = true;
-          root = "/var/www/daslastic.xyz";
-        };
         "jellyfin.daslastic.xyz" = {
           onlySSL = true;
           enableACME = true;
@@ -87,10 +60,6 @@
             proxyPass = "http://127.0.0.1:8099";
           };
         };
-        ${config.services.nextcloud.hostName} = {
-          forceSSL = true;
-          enableACME = true;
-        };
       };
     };
   };
@@ -100,6 +69,7 @@
       pkgs.mediainfo
       pkgs.jellyfin-ffmpeg
       pkgs.intel-gpu-tools
+      pkgs.jdk17_headless
     ];
 
     persistence."/persist" = {
@@ -107,7 +77,6 @@
       directories = [
         "/var/lib/jellyfin"
         "/var/lib/acme"
-        "/var/lib/nextcloud"
         "/var/lib/bitwarden_rs"
         "/var/www"
         "/media"

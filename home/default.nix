@@ -9,6 +9,13 @@
   imports =
     [
       ./xdg
+      ./gtk
+
+      ./alacritty
+      ./tofi
+      ./river
+      ./foot
+
       ./bin
       ./fish
       ./git
@@ -34,7 +41,6 @@
   home = {
     username = user;
     homeDirectory = "/home/${user}";
-    stateVersion = "23.05";
     sessionVariables = {
       NIXPKGS_ALLOW_UNFREE = "1";
     };
@@ -45,8 +51,13 @@
         ".gnupg"
         ".ssh"
         ".config/nix"
+        ".config/google-chrome"
+        ".mozilla"
+        ".local/state/wireplumber"
       ];
       allowOther = true;
     };
+
+    stateVersion = "24.05";
   };
 }
